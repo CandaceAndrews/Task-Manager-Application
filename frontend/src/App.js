@@ -1,27 +1,29 @@
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
-import React from 'react';
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const tasks = [
+{
+id: 3,
+title: "Order Release",
+desciption: "Check out customers accounts and release or block orders accordingly."
+},
+{
+  id: 4,
+  title: "Weekly Reports",
+  desciption: "Sending the weekly reports for overdue invoices."
+  },
+]
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+      viewCompleted:false,
+      taskList:tasks
+
+    }
+  }
 }
 
 export default App;
