@@ -4,6 +4,18 @@ import './App.css';
 
 const tasks = [
 {
+  id: 1,
+  title: "Call Clients",
+  desciption: "Call clients for overdue invoices.",
+  completed: true
+},
+  {
+  id: 2,
+  title: "Dunning",
+  desciption: "Sending dunning letters to clients for uncollected cash.",
+  completed: false
+},
+{
   id: 3,
   title: "Order Release",
   desciption: "Check out customers accounts and release or block orders accordingly.",
@@ -59,7 +71,21 @@ class App extends Component {
     const newItems = this.state.taskList.filter(
       item => item.completed ==viewCompleted
     );
+  
+    return newItems.map(item => (
+      <li key={item.id} className="list-group-item d-flex justify-content-between 
+      align-items-center">
+        <span className={`todo-title mr-2 ${this.state.viewCompleted }`}>
+
+        {item.title}
+
+
+        </span>
+      </li>
+    ))
   };
+
+
 
   render() {
     return (
@@ -82,8 +108,6 @@ class App extends Component {
       </main>
     )
   }
-
-
 }
 
 export default App;
