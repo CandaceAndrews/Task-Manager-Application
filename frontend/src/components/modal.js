@@ -43,6 +43,7 @@ class CustomModal extends Component {
               <Form>
 
                 <FormGroup>
+                    {/* { Title lablel } */}
                     <Label for="title">Title</Label>
                     <Input
                       type="text"
@@ -54,8 +55,30 @@ class CustomModal extends Component {
                 </FormGroup>
 
                 {/* { 2 description label } */}
-              </Form>
+                <FormGroup>
+                    <Label for="description">Description</Label>
+                    <Input
+                      type="text"
+                      name="description"
+                      value={this.state.activeItem.description}
+                      onChange={this.handleChange}
+                      placeholder="Enter Task Description"
+                    />
+                </FormGroup>
+                {/* { 3 completed label } */}
+                <FormGroup>
+                    <Label for="completed">
+                    <Input
+                      type="checkbox"
+                      name="completed"
+                      checked={this.state.activeItem.completed}
+                      onChange={this.handleChange}
+                    />
+                    Completed
+                    </Label>
+                </FormGroup>
 
+              </Form>
             </ModalBody>
 
             </Modal>
