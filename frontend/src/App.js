@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import CustomModel from './components/modal'
 
 const tasks = [
   {

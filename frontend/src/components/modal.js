@@ -81,14 +81,15 @@ class CustomModal extends Component {
               </Form>
             </ModalBody>
 
+            <ModalFooter>
+                <Button color="success" onClick={() => onSave(this.state.activeItem)}>
+                    Save
+                </Button>
+            </ModalFooter>
+
             </Modal>
         )
     }
-
-
-
-
-
-
-
 }
+
+// export default
