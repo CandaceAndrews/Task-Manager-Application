@@ -92,4 +92,4 @@ class CustomModal extends Component {
     }
 }
 
-// export default
+export default CustomModal
