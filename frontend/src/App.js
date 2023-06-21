@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Modal from "./components/Modal";
+import axios from 'axios';
 
 
 
@@ -37,7 +38,6 @@ class App extends Component {
     this.state = {
       modal:false,
       viewCompleted: false,
-      taskList: tasks,
       activeItem: {
         title: "",
         description: "",
@@ -49,6 +49,9 @@ class App extends Component {
 
   componentDidMount() {
     this.refreshList();
+  }
+
+  refreshList = () {
     axios
       .get("http://localhost:8000/api/tasks/")
       .then(res => this.state({ todoList: res.data}))
@@ -67,11 +70,15 @@ class App extends Component {
       .put(`https://localhost:8000/api/tasks/${item.id}`, item)
       .then(res => this.refreshList())
     }
-    axios.post("http://localhost:8000/api/tasks")
+    axios
+    .post("http://localhost:8000/api/tasks", item)
+    .then(res => this.refreshList())
   };
 
   handleDelete = item => {
-    alert('Deleted!' + JSON.stringify(item));
+    axios
+    .delete(`https://localhost:8000/api/tasks/${item.id}`)
+    .then(res => this.refreshList())
   };
 
   createItem = () => {
@@ -111,7 +118,7 @@ class App extends Component {
 
   renderItems = () => {
     const { viewCompleted } = this.state;
-    const newItems = this.state.taskList.filter(
+    const newItems = this.state.todoList.filter(
       item => item.completed === viewCompleted
     );
 
