@@ -43,25 +43,36 @@ class App extends Component {
         description: "",
         completed: false
       },
-      todoList =[]
+      todoList : []
     };
   }
 
   componentDidMount() {
     this.refreshList();
+    axios
+      .get("http://localhost:8000/api/tasks/")
+      .then(res => this.state({ todoList: res.data}))
+      .catch(err => console.log(err))
   }
 
 
   toggle = () => {
     this.state({modal: !this.state.modal});
   };
+
   handleSubmit = item => {
     this.toggle();
-    alert('Saved!' + JSON.stringify(item));
-  }
+    if (item.id) {
+      axios
+      .put(`https://localhost:8000/api/tasks/${item.id}`, item)
+      .then(res => this.refreshList())
+    }
+    axios.post("http://localhost:8000/api/tasks")
+  };
+
   handleDelete = item => {
     alert('Deleted!' + JSON.stringify(item));
-  }
+  };
 
   createItem = () => {
     const item = { title: "", modal: !this.state.modal };
