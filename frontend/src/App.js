@@ -47,20 +47,22 @@ class App extends Component {
     };
   }
 
+  // Add componentDidMount()
   componentDidMount() {
     this.refreshList();
   }
 
-  refreshList = () {
-    axios
+ 
+  refreshList = () => {
+    axios   //Axios to send and receive HTTP requests
       .get("http://localhost:8000/api/tasks/")
-      .then(res => this.state({ todoList: res.data}))
-      .catch(err => console.log(err))
-  }
+      .then(res => this.setState({ taskList: res.data }))
+      .catch(err => console.log(err));
+  };
 
 
   toggle = () => {
-    this.state({modal: !this.state.modal});
+    this.setState({ modal: !this.state.modal });
   };
 
   handleSubmit = item => {
@@ -68,11 +70,13 @@ class App extends Component {
     if (item.id) {
       axios
       .put(`https://localhost:8000/api/tasks/${item.id}`, item)
-      .then(res => this.refreshList())
+      .then(res => this.refreshList());
+      return;
     }
+    // if new post to submit
     axios
-    .post("http://localhost:8000/api/tasks", item)
-    .then(res => this.refreshList())
+      .post("http://localhost:8000/api/tasks", item)
+      .then(res => this.refreshList());
   };
 
   handleDelete = item => {
@@ -82,7 +86,7 @@ class App extends Component {
   };
 
   createItem = () => {
-    const item = { title: "", modal: !this.state.modal };
+    const item = { title: "", description: "", completed: false };
     this.setState({ activeItem: item, modal: !this.state.modal })
   };
 
@@ -116,6 +120,7 @@ class App extends Component {
     );
   };
 
+  // Main variable to render items on the screen
   renderItems = () => {
     const { viewCompleted } = this.state;
     const newItems = this.state.todoList.filter(
@@ -151,7 +156,7 @@ class App extends Component {
           <div className="col-md-6 col-sma-10 mx-auto p-0">
             <div className="card p-3">
               <div>
-                <button className="btn btn-warning">Add Task</button>
+                <button onClick={this.createItem} className="btn btn-warning">Add Task</button>
               </div>
               {this.renderTabList()}
               <ul className="list-group list-group-flush">
