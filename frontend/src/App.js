@@ -55,6 +55,14 @@ class App extends Component {
     alert('Deleted!' + JSON.stringify(item));
   }
 
+  createItem = () => {
+    const item = { title: "", modal: !this.state.modal };
+    this.setState({ activeItem: item, modal: !this.state.modal })
+  };
+
+
+
+
   displayCompleted = status => {
     this.setState({ viewCompleted: status });
   };
