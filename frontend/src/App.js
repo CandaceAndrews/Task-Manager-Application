@@ -4,32 +4,32 @@ import Modal from "./components/Modal";
 
 
 
-const tasks = [
-  {
-    id: 1,
-    title: "Call Clients",
-    description: "Call clients for overdue invoices.",
-    completed: true
-  },
-  {
-    id: 2,
-    title: "Dunning",
-    description: "Sending dunning letters to clients for uncollected cash.",
-    completed: false
-  },
-  {
-    id: 3,
-    title: "Order Release",
-    description: "Check out customers' accounts and release or block orders accordingly.",
-    completed: true
-  },
-  {
-    id: 4,
-    title: "Weekly Reports",
-    description: "Sending the weekly reports for overdue invoices.",
-    completed: false  
-  },
-];
+// const tasks = [
+//   {
+//     id: 1,
+//     title: "Call Clients",
+//     description: "Call clients for overdue invoices.",
+//     completed: true
+//   },
+//   {
+//     id: 2,
+//     title: "Dunning",
+//     description: "Sending dunning letters to clients for uncollected cash.",
+//     completed: false
+//   },
+//   {
+//     id: 3,
+//     title: "Order Release",
+//     description: "Check out customers' accounts and release or block orders accordingly.",
+//     completed: true
+//   },
+//   {
+//     id: 4,
+//     title: "Weekly Reports",
+//     description: "Sending the weekly reports for overdue invoices.",
+//     completed: false  
+//   },
+// ];
 
 class App extends Component {
   constructor(props) {
@@ -42,9 +42,15 @@ class App extends Component {
         title: "",
         description: "",
         completed: false
-      }
+      },
+      todoList =[]
     };
   }
+
+  componentDidMount() {
+    this.refreshList();
+  }
+
 
   toggle = () => {
     this.state({modal: !this.state.modal});
