@@ -56,7 +56,7 @@ class App extends Component {
   refreshList = () => {
     axios   //Axios to send and receive HTTP requests
       .get("http://localhost:8000/api/tasks/")
-      .then(res => this.setState({ taskList: res.data }))
+      .then(res => this.setState({ todoList: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -133,10 +133,9 @@ class App extends Component {
         className="list-group-item d-flex justify-content-between align-items-center"
       >
         <span
-          className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
+          className={`todo-title mr-2 ${this.state.viewCompleted ? "completed-todo" : ""
           }`}
-          title={item.title}
+          title={item.description}
         >
           {item.title}
         </span>
@@ -167,8 +166,11 @@ class App extends Component {
         </div>
         <footer className="my-3 mb-2 bg-info text-white text-center">Copyright 2023 &copy; All Rights Reserved</footer>
         {this.state.modal ? (
-          <Modal activeItem={this.state.activeItem} toggle={this.toggle}
-          onSave={this.handleSubmit} />
+          <Modal 
+          activeItem={this.state.activeItem} 
+          toggle={this.toggle}
+          onSave={this.handleSubmit} 
+          />
         ) : null }
       </main>
     );
