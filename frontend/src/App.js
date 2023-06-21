@@ -16,7 +16,7 @@ class App extends Component {
     };
   }
 
-  // Add componentDidMount()
+
   componentDidMount() {
     this.refreshList();
   }
@@ -93,28 +93,22 @@ class App extends Component {
       </li>
     ));
   };
-  // ///////////////////////////////////////////////////////////
+
 
   ////add this after modal creation
-  toggle = () => {//add this after modal creation
-    this.setState({ modal: !this.state.modal });//add this after modal creation
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
   };
-  // handleSubmit = item => {//add this after modal creation
-  //   this.toggle();//add this after modal creation
-  //   alert("save" + JSON.stringify(item));//add this after modal creation
-  // };
 
   // Submit an item
   handleSubmit = item => {
     this.toggle();
     if (item.id) {
-      // if old post to edit and submit
       axios
         .put(`http://localhost:8000/api/tasks/${item.id}/`, item)
         .then(res => this.refreshList());
       return;
     }
-    // if new post to submit
     axios
       .post("http://localhost:8000/api/tasks/", item)
       .then(res => this.refreshList());
@@ -126,9 +120,6 @@ class App extends Component {
       .delete(`http://localhost:8000/api/tasks/${item.id}/`)
       .then(res => this.refreshList());
   };
-  // handleDelete = item => {//add this after modal creation
-  //   alert("delete" + JSON.stringify(item));//add this after modal creation
-  // };
 
   // Create item
   createItem = () => {
@@ -142,7 +133,7 @@ class App extends Component {
   };
 
 
-  // -I- Start by visual effects to viewer
+  
   render() {
     return (
       <main className="content p-3 mb-2 bg-info">
